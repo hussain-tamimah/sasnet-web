@@ -3,6 +3,16 @@ import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Eye, ExternalLink } from 'lucide-react';
+import PipelineImg from '../assets/images/pipeline_img.png';
+import IndustrialEquipmentImg from '../assets/images/industrial_equipment.png';
+import BuildingMaterialsImg from '../assets/images/building_materials.png';
+import ProtectiveGearImg from '../assets/images/protective_gear.png';
+import WorkWearImg from '../assets/images/work_wear.png';
+import NetworkInfrastructureImg from '../assets/images/network_infrastructure.png';
+import RefineryEquipmentImg from '../assets/images/refinery_equipment.png';
+import AutomationSystemsImg from '../assets/images/automation_systems.png';
+import HeavyMachineryImg from '../assets/images/heavy_machinery.png';
+
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -11,24 +21,25 @@ const Gallery = () => {
   const filters = [
     'All',
     'Oil & Gas',
-    'Manufacturing', 
+    'Manufacturing',
     'Construction',
     'Safety',
     'Uniforms',
     'Network'
   ];
 
-  const galleryItems = [
-    { id: 1, category: 'Oil & Gas', title: 'Pipeline Infrastructure', subtitle: 'Advanced pipeline systems' },
-    { id: 2, category: 'Manufacturing', title: 'Industrial Equipment', subtitle: 'Precision manufacturing tools' },
-    { id: 3, category: 'Construction', title: 'Building Materials', subtitle: 'High-grade construction supplies' },
-    { id: 4, category: 'Safety', title: 'Protective Gear', subtitle: 'Complete safety solutions' },
-    { id: 5, category: 'Uniforms', title: 'Professional Workwear', subtitle: 'Industry-specific apparel' },
-    { id: 6, category: 'Network', title: 'Network Infrastructure', subtitle: 'Advanced connectivity solutions' },
-    { id: 7, category: 'Oil & Gas', title: 'Refinery Equipment', subtitle: 'Specialized refining systems' },
-    { id: 8, category: 'Manufacturing', title: 'Automation Systems', subtitle: 'Smart manufacturing solutions' },
-    { id: 9, category: 'Construction', title: 'Heavy Machinery', subtitle: 'Industrial construction equipment' },
-  ];
+ const galleryItems = [
+  { id: 1, category: 'Oil & Gas', title: 'Pipeline Infrastructure', subtitle: 'Advanced pipeline systems', imgUrl: PipelineImg },
+  { id: 2, category: 'Manufacturing', title: 'Industrial Equipment', subtitle: 'Precision manufacturing tools', imgUrl: IndustrialEquipmentImg },
+  { id: 3, category: 'Construction', title: 'Building Materials', subtitle: 'High-grade construction supplies', imgUrl: BuildingMaterialsImg },
+  { id: 4, category: 'Safety', title: 'Protective Gear', subtitle: 'Complete safety solutions', imgUrl: ProtectiveGearImg },
+  { id: 5, category: 'Uniforms', title: 'Professional Work wear', subtitle: 'Industry-specific apparel', imgUrl: WorkWearImg },
+  { id: 6, category: 'Network', title: 'Network Infrastructure', subtitle: 'Advanced connectivity solutions', imgUrl: NetworkInfrastructureImg },
+  { id: 7, category: 'Oil & Gas', title: 'Refinery Equipment', subtitle: 'Specialized refining systems', imgUrl: RefineryEquipmentImg },
+  { id: 8, category: 'Manufacturing', title: 'Automation Systems', subtitle: 'Smart manufacturing solutions', imgUrl: AutomationSystemsImg },
+  { id: 9, category: 'Construction', title: 'Heavy Machinery', subtitle: 'Industrial construction equipment', imgUrl: HeavyMachineryImg },
+];
+
 
   const filteredItems = activeFilter === 'All' 
     ? galleryItems 
@@ -91,9 +102,10 @@ const Gallery = () => {
                   onHoverEnd={() => setHoveredItem(null)}
                 >
                   <div className="gallery-image">
-                    <div className="image-placeholder">
-                      <div className="placeholder-pattern"></div>
-                    </div>
+                    {/* <div className="image-placeholder"> */}
+                      {/* <div className="placeholder-pattern"></div> */}
+                       <img src={item.imgUrl} alt={`${item.title} - ${item.subtitle}`} className='w-100' />
+                    {/* </div> */}
                     
                     <AnimatePresence>
                       {hoveredItem === item.id && (

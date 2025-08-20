@@ -799,7 +799,7 @@ body {
 .feature-card:hover .feature-icon {
   color: white;
   background: var(--primary-gradient);
-  border-color: transparent;
+  /* border-color: transparent; */
 }
 
 .feature-title {

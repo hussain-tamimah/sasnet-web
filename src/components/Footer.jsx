@@ -13,6 +13,7 @@ import {
   Instagram,
   ExternalLink
 } from 'lucide-react';
+import Logo from '../assets/images/app-logo.jpeg';
 
 const Footer = () => {
   const services = [
@@ -59,7 +60,7 @@ const Footer = () => {
             >
               <div className="footer-logo">
                 <div className="footer-logo-icon">
-                  <div className="logo-inner"></div>
+                  <img src={Logo} alt="Logo" className="icon-inner" />
                 </div>
                 <div className="footer-logo-text">
                   <h3>SASNET Safety</h3>
