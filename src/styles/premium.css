@@ -766,8 +766,8 @@ body {
 .feature-icon {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
-  border: 2px solid var(--glass-border);
-  border-radius: 50%;
+  /* border: 2px solid var(--glass-border); */
+  border-radius: 30%;
   width: 80px;
   height: 80px;
   display: flex;
@@ -786,7 +786,7 @@ body {
   right: -10px;
   bottom: -10px;
   background: var(--primary-gradient);
-  border-radius: 50%;
+  border-radius: 30%;
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: 1;
@@ -799,7 +799,7 @@ body {
 .feature-card:hover .feature-icon {
   color: white;
   background: var(--primary-gradient);
-  /* border-color: transparent; */
+  border-color: transparent;
 }
 
 .feature-title {
@@ -1557,7 +1557,8 @@ body {
 .premium-input,
 .premium-textarea {
   background: var(--light-bg);
-  border: 2px solid transparent;
+  border: 2px solid;
+  border-color: #30618C;
   border-radius: var(--border-radius);
   padding: 1rem 1rem 1rem 3rem;
   font-size: 1rem;
