@@ -11,10 +11,10 @@ const Stats = () => {
   });
 
   const stats = [
-    { number: 150, suffix: '+', label: 'Global Clients', description: 'Trusted partners worldwide' },
-    { number: 300, suffix: '+', label: 'Projects Completed', description: 'Successful deliveries' },
+    { number: 220, suffix: '+', label: 'Global Clients', description: 'Trusted partners worldwide' },
+    { number: 345, suffix: '+', label: 'Projects Completed', description: 'Successful deliveries' },
     { number: 24, suffix: '/7', label: 'Support Available', description: 'Round-the-clock service' },
-    { number: 50, suffix: '+', label: 'Expert Team', description: 'Dedicated professionals' },
+    { number: 35, suffix: '+', label: 'Expert Team', description: 'Dedicated professionals' },
   ];
 
   const AnimatedNumber = ({ targetNumber, suffix, inView }) => {

@@ -51,11 +51,10 @@ const Contact = () => {
       icon: <MapPin size={24} />,
       title: 'Our Location',
       details: [
-        'CR. 2051238344',
-        'Office No.41, 2nd Floor',
-        'Port Gate Building',
-        'A Khalidiyah Al Janubiyah',
-        'Dammaam 32221, Saudi Arabia'
+        'CR.7050207021',
+        'Business center Al Khaldiyah',
+        'Khamis Mushait.Abha',
+        'KINGDOM OF SAUDI ARABIA'
       ],
       color: 'primary'
     },
@@ -63,9 +62,8 @@ const Contact = () => {
       icon: <Mail size={24} />,
       title: 'Email Address',
       details: [
-        'info@sasnetgroup.com',
-        'sales@sasnetgroup.com',
-        'support@sasnetgroup.com'
+        'info@sasnetsafety.com',
+        'sales@sasnetsafety.com'
       ],
       color: 'success'
     },
@@ -73,8 +71,8 @@ const Contact = () => {
       icon: <Phone size={24} />,
       title: 'Phone Number',
       details: [
-        '+966 53 335 0205',
-        '+966 13 123 4567'
+        '+966 54 406 5093',
+        '+966 51 051 6139'
       ],
       color: 'info'
     },
@@ -82,9 +80,8 @@ const Contact = () => {
       icon: <Clock size={24} />,
       title: 'Business Hours',
       details: [
-        'Sunday - Thursday: 8:00 AM - 6:00 PM',
-        'Friday: 1:00 PM - 6:00 PM',
-        'Saturday: Closed'
+        'Sunday - Thursday: 9:00 AM - 5:00 PM',
+        'Friday: Closed'
       ],
       color: 'warning'
     }

@@ -77,11 +77,11 @@ const Footer = () => {
               <div className="footer-contact-quick">
                 <div className="contact-quick-item">
                   <Phone size={16} />
-                  <span>+966 53 335 0205</span>
+                  <span>+966 54 406 5093</span>
                 </div>
                 <div className="contact-quick-item">
                   <Mail size={16} />
-                  <span>info@sasnetgroup.com</span>
+                  <span>info@sasnetsafety.com</span>
                 </div>
               </div>
             </motion.div>
@@ -163,8 +163,8 @@ const Footer = () => {
                   <div>
                     <h6>Phone Numbers</h6>
                     <p>
-                      +966 53 335 0205<br />
-                      +966 13 123 4567
+                      +966 54 406 5093<br />
+                      +966 51 051 6139
                     </p>
                   </div>
                 </div>
@@ -174,8 +174,8 @@ const Footer = () => {
                   <div>
                     <h6>Email Addresses</h6>
                     <p>
-                      info@sasnetgroup.com<br />
-                      sales@sasnetgroup.com
+                      info@sasnetsafety.com<br />
+                      sales@sasnetsafety.com
                     </p>
                   </div>
                 </div>

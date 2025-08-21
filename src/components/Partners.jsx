@@ -149,28 +149,6 @@ const Partners = () => {
           ))}
         </Row>
 
-        {/* Partnership CTA */}
-        <Row className="mt-5 pt-5">
-          <Col lg={12} className="text-center">
-            <motion.div
-              className="partnership-cta"
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <h3>Interested in Partnership?</h3>
-              <p>Join our network of trusted partners and grow your business with us</p>
-              <motion.button
-                className="partnership-btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Become a Partner
-              </motion.button>
-            </motion.div>
-          </Col>
-        </Row>
       </Container>
     </section>
   );
