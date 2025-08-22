@@ -1,90 +1,153 @@
 // src/components/Contact.jsx
-import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
-import { motion } from 'framer-motion';
-import { 
-  MapPin, 
-  Mail, 
-  Phone, 
-  Clock, 
-  Send, 
-  User, 
+import React, { useState } from "react";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { motion } from "framer-motion";
+import {
+  MapPin,
+  Mail,
+  Phone,
+  Clock,
+  Send,
+  User,
   MessageSquare,
   Building,
-  Globe
-} from 'lucide-react';
+  Globe,
+} from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    company: "",
+    subject: "",
+    message: "",
   });
   const [showAlert, setShowAlert] = useState(false);
+  const [alertType, setAlertType] = useState("success"); // 'success' | 'error'
+  const [alertMessage, setAlertMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
+  function formatPrettyTimestampLower(d = new Date()) {
+    const day = String(d.getDate()).padStart(2, "0");
+    const month = d.toLocaleString("en-US", { month: "short" }).toLowerCase(); // "aug"
+    const year = d.getFullYear();
+
+    let hours = d.getHours();
+    const minutes = String(d.getMinutes()).padStart(2, "0");
+    const ampm = hours >= 12 ? "pm" : "am";
+    hours = hours % 12 || 12;
+    const hoursStr = String(hours).padStart(2, "0");
+
+    return `${day}-${month}-${year} ${hoursStr}:${minutes} ${ampm}`;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+
+    try {
+      const formEl = e.currentTarget;
+      const formDataToSend = new FormData(formEl);
+      const name = (formData.name || "").trim() || "Visitor";
+      const email = (formData.email || "").trim();
+      const ts = formatPrettyTimestampLower();
+      formDataToSend.append(
+        "_subject",
+        `Contact from ${name} <${email}> — ${ts}`
+      );
+
+      formDataToSend.append("_template", "table");
+      formDataToSend.append("_captcha", "true");
+      // Honeypot (empty string is fine; bots may fill it)
+      formDataToSend.append("_honey", "");
+
+      const res = await fetch(
+        "https://formsubmit.co/ajax/info@sasnetsafety.com",
+        {
+          method: "POST",
+          body: formDataToSend,
+          headers: {
+            Accept: "application/json",
+          },
+        }
+      );
+
+      const data = await res.json();
+
+      if (res.ok && (data.success === "true" || data.success === true)) {
+        setAlertType("success");
+        setAlertMessage(
+          "Message sent successfully! We'll get back to you soon."
+        );
+        setShowAlert(true);
+
+        // Clear inputs
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          subject: "",
+          message: "",
+        });
+
+        // Hide after 5s
+        setTimeout(() => setShowAlert(false), 5000);
+      } else {
+        // Handle known error formats from FormSubmit
+        const msg =
+          (data && (data.message || data.error || data.errors?.join(", "))) ||
+          "Submission failed. Please try again.";
+        setAlertType("error");
+        setAlertMessage(msg);
+        setShowAlert(true);
+      }
+    } catch (err) {
+      setAlertType("error");
+      setAlertMessage(
+        "Network error. Please check your connection and try again."
+      );
       setShowAlert(true);
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: '', email: '', company: '', subject: '', message: '' });
-      
-      setTimeout(() => setShowAlert(false), 5000);
-    }, 1000);
+    }
   };
 
   const contactInfo = [
     {
       icon: <MapPin size={24} />,
-      title: 'Our Location',
+      title: "Our Location",
       details: [
-        'CR.7050207021',
-        'Business center Al Khaldiyah',
-        'Khamis Mushait.Abha',
-        'KINGDOM OF SAUDI ARABIA'
+        "CR.7050207021",
+        "Business center Al Khaldiyah",
+        "Khamis Mushait.Abha",
+        "KINGDOM OF SAUDI ARABIA",
       ],
-      color: 'primary'
+      color: "primary",
     },
     {
       icon: <Mail size={24} />,
-      title: 'Email Address',
-      details: [
-        'info@sasnetsafety.com',
-        'sales@sasnetsafety.com'
-      ],
-      color: 'success'
+      title: "Email Address",
+      details: ["info@sasnetsafety.com", "sales@sasnetsafety.com"],
+      color: "success",
     },
     {
       icon: <Phone size={24} />,
-      title: 'Phone Number',
-      details: [
-        '+966 54 406 5093',
-        '+966 51 051 6139'
-      ],
-      color: 'info'
+      title: "Phone Number",
+      details: ["+966 54 406 5093", "+966 51 051 6139"],
+      color: "info",
     },
     {
       icon: <Clock size={24} />,
-      title: 'Business Hours',
-      details: [
-        'Sunday - Thursday: 9:00 AM - 5:00 PM',
-        'Friday: Closed'
-      ],
-      color: 'warning'
-    }
+      title: "Business Hours",
+      details: ["Sunday - Thursday: 9:00 AM - 5:00 PM", "Friday: Closed"],
+      color: "warning",
+    },
   ];
 
   return (
@@ -100,8 +163,8 @@ const Contact = () => {
             >
               <h2 className="section-title">Get In Touch</h2>
               <p className="section-subtitle">
-                Ready to start your next project? Contact us today and let's discuss 
-                how we can help transform your business.
+                Ready to start your next project? Contact us today and let's
+                discuss how we can help transform your business.
               </p>
             </motion.div>
           </Col>
@@ -133,9 +196,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div className="contact-info-icon">
-                      {info.icon}
-                    </div>
+                    <div className="contact-info-icon">{info.icon}</div>
                     <div className="contact-info-content">
                       <h5>{info.title}</h5>
                       {info.details.map((detail, i) => (
@@ -175,7 +236,10 @@ const Contact = () => {
               <div className="contact-form-card">
                 <div className="form-header">
                   <h3>Send us a Message</h3>
-                  <p>Fill out the form below and we'll get back to you within 24 hours</p>
+                  <p>
+                    Fill out the form below and we'll get back to you within 24
+                    hours
+                  </p>
                 </div>
 
                 {showAlert && (
@@ -186,12 +250,23 @@ const Contact = () => {
                   >
                     <div className="alert-content">
                       <Send size={20} />
-                      <span>Message sent successfully! We'll get back to you soon.</span>
+                      <span>
+                        Message sent successfully! We'll get back to you soon.
+                      </span>
                     </div>
                   </motion.div>
                 )}
 
                 <Form onSubmit={handleSubmit}>
+                  {/* Optional honeypot field in DOM (also appended in code) */}
+                  <input
+                    type="text"
+                    name="_honey"
+                    style={{ display: "none" }}
+                    tabIndex="-1"
+                    autoComplete="off"
+                  />
+
                   <Row>
                     <Col md={6}>
                       <Form.Group className="premium-form-group">

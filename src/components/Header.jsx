@@ -48,7 +48,7 @@ const Header = () => {
               </div>
               <div className="brand-text">
                 <h3>SASNET Safety</h3>
-                <span>Excellence in Trading</span>
+                <span>The Complete Solutions</span>
               </div>
             </div>
           </motion.div>

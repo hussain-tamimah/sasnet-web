@@ -1521,13 +1521,26 @@ body {
   color: var(--text-light);
 }
 
-.custom-alert {
-  background: linear-gradient(135deg, #10b981, #059669);
-  color: white;
-  padding: 1rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 2rem;
-  border: none;
+ .custom-alert {
+  border-radius: 10px;
+  padding: 12px 14px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.custom-alert.success {
+  background: #e8fff1;
+  color: #0d6832;
+  border: 1px solid #b8f0cd;
+}
+
+.custom-alert.error {
+  background: #ffeded;
+  color: #8a1c1c;
+  border: 1px solid #f3b5b5;
 }
 
 .alert-content {
@@ -1614,6 +1627,7 @@ body {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+
 
 @keyframes spin {
   0% { transform: rotate(0deg); }
